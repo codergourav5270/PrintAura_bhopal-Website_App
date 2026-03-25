@@ -47,7 +47,7 @@ export default function AdminLogin() {
             P
           </span>
           <h1 className="mt-4 text-xl font-bold text-white">Admin Panel</h1>
-          <p className="mt-1 text-sm text-[#aaaaaa]">Poster Galaxy operations</p>
+          <p className="mt-1 text-sm text-[#aaaaaa]">PrintAura_bhopal operations</p>
         </div>
         <form onSubmit={onSubmit} className="mt-8 space-y-4">
           <div>

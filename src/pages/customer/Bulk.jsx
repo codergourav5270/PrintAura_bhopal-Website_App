@@ -16,8 +16,8 @@ export default function Bulk() {
         </p>
         <p className="mt-4 text-sm text-[#666]">
           Write to{' '}
-          <a href="mailto:bulk@postergalaxy.in" className="text-accent">
-            bulk@postergalaxy.in
+          <a href="mailto:printaura999@gmail.com" className="text-accent">
+            printaura999@gmail.com
           </a>
         </p>
       </main>

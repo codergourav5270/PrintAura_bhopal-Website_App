@@ -69,7 +69,7 @@ export function AdminLayout({ title, children }) {
             P
           </span>
           <div>
-            <p className="text-xs font-semibold text-white">Poster Galaxy</p>
+            <p className="text-xs font-semibold text-white">PrintAura_bhopal</p>
             <span className="rounded bg-accent/20 px-2 py-0.5 text-[10px] font-bold text-accent">
               Admin
             </span>

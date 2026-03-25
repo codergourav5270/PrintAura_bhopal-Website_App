@@ -38,7 +38,7 @@ export function Navbar() {
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-base font-black text-black">
                 P
               </span>
-              <span className="hidden sm:inline">Poster Galaxy</span>
+              <span className="hidden sm:inline">PrintAura_bhopal</span>
             </Link>
           </div>
 

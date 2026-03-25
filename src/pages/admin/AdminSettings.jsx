@@ -6,10 +6,10 @@ const KEY = 'poster_galaxy_store_settings_v1'
 function loadSettings() {
   try {
     const raw = localStorage.getItem(KEY)
-    if (!raw) return { storeName: 'Poster Galaxy', supportEmail: 'hello@postergalaxy.in' }
+    if (!raw) return { storeName: 'PrintAura_bhopal', supportEmail: 'printaura999@gmail.com' }
     return { ...JSON.parse(raw) }
   } catch {
-    return { storeName: 'Poster Galaxy', supportEmail: 'hello@postergalaxy.in' }
+    return { storeName: 'PrintAura_bhopal', supportEmail: 'printaura999@gmail.com' }
   }
 }
 

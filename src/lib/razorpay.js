@@ -65,7 +65,7 @@ export function openRazorpayCheckout({
     key: keyId,
     amount: amountPaise,
     currency: 'INR',
-    name: 'Poster Galaxy',
+    name: 'PrintAura_bhopal',
     description: description || `Order ${orderNumber}`,
     order_id: orderId,
     handler(response) {

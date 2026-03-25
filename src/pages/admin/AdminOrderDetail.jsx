@@ -119,7 +119,7 @@ export default function AdminOrderDetail() {
       </div>
 
       <div className="mb-8 hidden text-center print:block">
-        <h1 className="text-2xl font-bold text-black">Poster Galaxy — Invoice</h1>
+        <h1 className="text-2xl font-bold text-black">PrintAura_bhopal — Invoice</h1>
         <p className="text-sm text-gray-600">{order.order_number}</p>
       </div>
 

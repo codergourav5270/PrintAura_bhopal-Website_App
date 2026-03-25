@@ -6,11 +6,6 @@ import { Navbar } from '../../components/layout/Navbar.jsx'
 import { ToastHost } from '../../components/ui/Toast.jsx'
 import { useCart } from '../../context/CartContext.jsx'
 import { useToast } from '../../hooks/useToast.js'
-import {
-  createRazorpayOrderServer,
-  loadRazorpayScript,
-  openRazorpayCheckout,
-} from '../../lib/razorpay.js'
 import { generateOrderNumber, formatRupee, supabase } from '../../lib/supabase'
 import {
   getStoredCoupon,
@@ -22,6 +17,8 @@ import {
 } from '../../lib/ordersApi.js'
 
 const FREE_SHIP_THRESHOLD = 499
+
+const UPI_ID = 'yourname@paytm'
 
 function buildItems(cartItems) {
   return cartItems.map((x) => ({
@@ -49,6 +46,11 @@ export default function Checkout() {
   const [discount, setDiscount] = useState(0)
   const [couponUsed, setCouponUsed] = useState('')
   const [busy, setBusy] = useState(false)
+  const [qrModal, setQrModal] = useState(null)
+  const [copied, setCopied] = useState(false)
+  const [qrVerifyStep, setQrVerifyStep] = useState('qr')
+  const [utrInput, setUtrInput] = useState('')
+  const [screenshotFile, setScreenshotFile] = useState(null)
 
   useEffect(() => {
     const s = getStoredCoupon()
@@ -64,8 +66,6 @@ export default function Checkout() {
     subtotal === 0 ? 0 : afterDiscount >= FREE_SHIP_THRESHOLD ? 0 : 79
   const discounted = Math.round((subtotal * discount) / 100)
   const total = Math.max(0, subtotal - discounted + shipping)
-
-  const keyId = import.meta.env.VITE_RAZORPAY_KEY_ID || ''
 
   const applyCoupon = async () => {
     const res = await validateCouponCode(couponInput)
@@ -90,6 +90,93 @@ export default function Checkout() {
     }),
     [line1, city, state, pincode]
   )
+
+  const qrImageSrc = useMemo(() => {
+    if (!qrModal) return ''
+    const am = Number(qrModal.total).toFixed(2)
+    const upiData = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent('PrintAura_bhopal')}&am=${am}&cu=INR&tn=${encodeURIComponent(`Order${qrModal.orderNumber}`)}`
+    return `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${encodeURIComponent(upiData)}`
+  }, [qrModal])
+
+  const copyUpi = async () => {
+    try {
+      await navigator.clipboard.writeText(UPI_ID)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      showToast('Could not copy', 'error')
+    }
+  }
+
+  const onPaidConfirm = () => {
+    if (!qrModal) return
+    setQrVerifyStep('verify')
+  }
+
+  const handlePaymentPending = async () => {
+    if (!qrModal) return
+    const utr = utrInput.trim()
+    if (!utr) {
+      showToast('Enter transaction ID (UTR)', 'error')
+      return
+    }
+    setBusy(true)
+    let screenshotUrl = null
+    if (screenshotFile) {
+      const ext = screenshotFile.name.split('.').pop() || 'jpg'
+      const path = `payment-proofs/${qrModal.orderId}-${Date.now()}.${ext}`
+      const { error: stErr } = await supabase.storage
+        .from('poster-images')
+        .upload(path, screenshotFile, { cacheControl: '3600', upsert: true })
+      if (stErr) {
+        showToast(stErr.message || 'Screenshot upload failed', 'error')
+        setBusy(false)
+        return
+      }
+      const { data: pub } = supabase.storage.from('poster-images').getPublicUrl(path)
+      screenshotUrl = pub.publicUrl
+    }
+    const { error: upErr } = await supabase
+      .from('orders')
+      .update({
+        payment_method: 'QR',
+        payment_status: 'pending',
+        order_status: 'pending_payment',
+        razorpay_payment_id: utr,
+        razorpay_order_id: screenshotUrl,
+      })
+      .eq('id', qrModal.orderId)
+
+    if (upErr) {
+      showToast(upErr.message || 'Update failed', 'error')
+      setBusy(false)
+      return
+    }
+    showToast(
+      'Payment submitted. We will verify and confirm your order.'
+    )
+    clearCart()
+    setQrModal(null)
+    setQrVerifyStep('qr')
+    setUtrInput('')
+    setScreenshotFile(null)
+    setBusy(false)
+  }
+
+  const onCancelQr = async () => {
+    if (!qrModal) return
+    setBusy(true)
+    await supabase
+      .from('orders')
+      .update({ payment_status: 'failed' })
+      .eq('id', qrModal.orderId)
+    setQrModal(null)
+    setQrVerifyStep('qr')
+    setUtrInput('')
+    setScreenshotFile(null)
+    setBusy(false)
+    showToast('Payment cancelled. Try again.', 'error')
+  }
 
   const placeOrder = async () => {
     if (!items.length) {
@@ -129,7 +216,7 @@ export default function Checkout() {
     setBusy(true)
 
     if (payment === 'cod') {
-      const { data, error } = await supabase.from('orders').insert(payload).select('id').single()
+      const { error } = await supabase.from('orders').insert(payload).select('id').single()
       if (error) {
         showToast(error.message || 'Order failed', 'error')
         setBusy(false)
@@ -159,77 +246,15 @@ export default function Checkout() {
       return
     }
 
-    const orderIdRow = inserted.id
-
-    if (!keyId) {
-      showToast('Razorpay key missing in env', 'error')
-      setBusy(false)
-      return
-    }
-
-    try {
-      const Razorpay = await loadRazorpayScript()
-      const amountPaise = Math.round(total * 100)
-      const orderData = await createRazorpayOrderServer({
-        amountPaise,
-        receipt: orderNumber,
-      })
-
-      openRazorpayCheckout({
-        Razorpay,
-        keyId,
-        orderId: orderData.id,
-        amountPaise,
-        orderNumber,
-        name: name.trim(),
-        email: email.trim(),
-        phone: phone.trim(),
-        description: `Poster Galaxy #${orderNumber}`,
-        onSuccess: async (response) => {
-          const { error: upErr } = await supabase
-            .from('orders')
-            .update({
-              payment_status: 'paid',
-              razorpay_order_id: orderData.id,
-              razorpay_payment_id: response.razorpay_payment_id,
-            })
-            .eq('id', orderIdRow)
-
-          if (upErr) {
-            showToast('Paid but update failed — contact support', 'error')
-            setBusy(false)
-            return
-          }
-          await upsertCustomerRecord({
-            name: payload.customer_name,
-            email: payload.customer_email,
-            phone: payload.customer_phone,
-            orderTotal: total,
-          })
-          clearCart()
-          setBusy(false)
-          navigate('/order-success', { state: { orderNumber } })
-        },
-        onDismiss: () => {
-          showToast('Payment window closed — order is still pending.')
-          setBusy(false)
-        },
-        onPaymentFailed: async () => {
-          await supabase
-            .from('orders')
-            .update({ payment_status: 'failed' })
-            .eq('id', orderIdRow)
-          showToast('Payment failed', 'error')
-          setBusy(false)
-        },
-      })
-    } catch (e) {
-      const msg =
-        e?.message ||
-        'Could not start payment. Deploy API route /api/create-razorpay-order on Vercel.'
-      showToast(msg, 'error')
-      setBusy(false)
-    }
+    setQrModal({
+      orderId: inserted.id,
+      orderNumber,
+      total,
+    })
+    setQrVerifyStep('qr')
+    setUtrInput('')
+    setScreenshotFile(null)
+    setBusy(false)
   }
 
   if (!items.length) {
@@ -317,7 +342,7 @@ export default function Checkout() {
                 onChange={() => setPayment('online')}
                 className="text-accent"
               />
-              <span className="text-sm text-white">Razorpay (cards, UPI, wallets)</span>
+              <span className="text-sm text-white">Pay Online</span>
             </label>
             <label className="flex min-h-[44px] cursor-pointer items-center gap-3 rounded-xl border border-border px-4 py-3">
               <input
@@ -385,16 +410,134 @@ export default function Checkout() {
             >
               {busy ? 'Please wait…' : 'Place order'}
             </button>
-            <p className="text-xs text-[#666]">
-              Online payments require the Vercel API route{' '}
-              <code className="text-[#aaaaaa]">/api/create-razorpay-order</code>{' '}
-              with server keys. COD works without it.
-            </p>
           </div>
         </div>
       </main>
       <Footer />
       <ToastHost toast={toast} />
+
+      {qrModal && (
+        <div className="fixed inset-0 z-[300] flex items-center justify-center bg-black/80 p-4">
+          <div
+            className="absolute inset-0"
+            role="presentation"
+            aria-hidden
+          />
+          <div className="relative z-10 w-full max-w-md rounded-2xl border border-border bg-[#1a1a1a] p-6 shadow-2xl">
+            <h2 className="text-center text-xl font-bold text-white">
+              Complete Your Payment
+            </h2>
+            <p className="mt-4 text-center text-3xl font-bold text-white">
+              Pay{' '}
+              <span className="text-[#f5c518]">{formatRupee(qrModal.total)}</span>
+            </p>
+
+            <div className="mt-6 flex justify-center">
+              <img
+                src={qrImageSrc}
+                alt="Payment QR code"
+                width={250}
+                height={250}
+                className="h-[250px] w-[250px] rounded-lg border border-border bg-white object-contain"
+              />
+            </div>
+
+            <p className="mt-4 text-center text-sm text-[#aaaaaa]">
+              Scan with any UPI app to pay
+            </p>
+            <p className="mt-1 text-center text-xs text-[#666]">
+              GPay • PhonePe • Paytm • BHIM • Any UPI App
+            </p>
+
+            <div className="mt-6 rounded-xl border border-border bg-bg px-4 py-3">
+              <p className="text-xs text-[#aaaaaa]">Or pay directly to UPI ID:</p>
+              <div className="mt-2 flex flex-wrap items-center gap-2">
+                <span className="font-mono text-sm text-white">{UPI_ID}</span>
+                <button
+                  type="button"
+                  onClick={copyUpi}
+                  className="rounded-lg border border-accent px-3 py-1 text-xs font-semibold text-[#f5c518] hover:bg-accent/10"
+                >
+                  Copy
+                </button>
+                {copied && (
+                  <span className="text-xs text-green-400">Copied!</span>
+                )}
+              </div>
+            </div>
+
+            {qrVerifyStep === 'qr' && (
+              <>
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={onPaidConfirm}
+                  className="mt-6 w-full min-h-[52px] rounded-xl bg-[#f5c518] font-semibold text-black hover:bg-[#e6b800] disabled:opacity-50"
+                >
+                  I Have Paid ✅
+                </button>
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={onCancelQr}
+                  className="mt-3 w-full text-center text-sm text-red-400 hover:underline disabled:opacity-50"
+                >
+                  Cancel Payment
+                </button>
+              </>
+            )}
+
+            {qrVerifyStep === 'verify' && (
+              <div className="mt-6 space-y-4 border-t border-border pt-6">
+                <p className="text-center text-sm font-medium text-white">
+                  Enter Transaction ID (UTR)
+                </p>
+                <input
+                  type="text"
+                  value={utrInput}
+                  onChange={(e) => setUtrInput(e.target.value)}
+                  placeholder="12-digit UTR / reference"
+                  className="w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-white outline-none focus:border-accent"
+                />
+                <div>
+                  <p className="mb-2 text-xs text-[#aaaaaa]">
+                    Upload Payment Screenshot (optional)
+                  </p>
+                  <label className="flex cursor-pointer flex-col rounded-xl border border-dashed border-border bg-bg px-4 py-3 text-center text-xs text-[#aaaaaa] hover:border-accent/40">
+                    <span>
+                      {screenshotFile ? screenshotFile.name : 'Choose file'}
+                    </span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) =>
+                        setScreenshotFile(e.target.files?.[0] || null)
+                      }
+                    />
+                  </label>
+                </div>
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={handlePaymentPending}
+                  className="w-full min-h-[52px] rounded-xl bg-[#f5c518] font-semibold text-black hover:bg-[#e6b800] disabled:opacity-50"
+                >
+                  {busy ? 'Submitting…' : 'Submit payment details'}
+                </button>
+                <button
+                  type="button"
+                  disabled={busy}
+                  onClick={() => setQrVerifyStep('qr')}
+                  className="w-full text-center text-sm text-[#aaaaaa] hover:text-white"
+                >
+                  ← Back
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </>
   )
 }

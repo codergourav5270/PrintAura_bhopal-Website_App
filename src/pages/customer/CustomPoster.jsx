@@ -21,8 +21,8 @@ export default function CustomPoster() {
         </ul>
         <p className="mt-8 text-sm text-[#666]">
           For bespoke quotes email{' '}
-          <a href="mailto:studio@postergalaxy.in" className="text-accent">
-            studio@postergalaxy.in
+          <a href="mailto:printaura999@gmail.com" className="text-accent">
+            printaura999@gmail.com
           </a>{' '}
           with your artwork attached.
         </p>

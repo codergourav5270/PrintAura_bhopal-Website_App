@@ -1,4 +1,4 @@
-# Poster Galaxy — Premium poster e-commerce
+# PrintAura_bhopal — Premium poster e-commerce
 
 Production-ready React 18 + Vite storefront with Supabase (database, auth, storage), Razorpay payments, and a full admin dashboard.
 

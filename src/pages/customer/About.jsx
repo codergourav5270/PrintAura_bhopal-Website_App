@@ -8,7 +8,7 @@ export default function About() {
       <AnnouncementBar />
       <Navbar />
       <main className="mx-auto max-w-3xl px-4 py-16">
-        <h1 className="text-3xl font-bold text-white">About Poster Galaxy</h1>
+        <h1 className="text-3xl font-bold text-white">About PrintAura_bhopal</h1>
         <p className="mt-6 leading-relaxed text-[#aaaaaa]">
           We are a small Indian team obsessed with print quality and packaging. Every
           poster is inspected before it leaves our studio. From matte paper stock to

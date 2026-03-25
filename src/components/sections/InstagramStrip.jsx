@@ -6,7 +6,7 @@ export function InstagramStrip() {
   return (
     <section className="border-t border-border py-12">
       <div className="mx-auto max-w-7xl px-4 text-center">
-        <p className="text-sm font-medium text-accent">@postergallery</p>
+        <p className="text-sm font-medium text-accent">PrintAura_bhopal</p>
         <h2 className="mt-1 text-xl font-bold text-white">
           On your wall soon
         </h2>
