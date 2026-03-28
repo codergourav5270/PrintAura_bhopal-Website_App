@@ -1,8 +1,23 @@
+import { useEffect, useState } from 'react'
 import { AnnouncementBar } from '../../components/layout/AnnouncementBar.jsx'
 import { Footer } from '../../components/layout/Footer.jsx'
 import { Navbar } from '../../components/layout/Navbar.jsx'
+import { DEFAULT_SITE_SETTINGS, fetchSiteSettings } from '../../lib/siteSettings.js'
 
 export default function Bulk() {
+  const [email, setEmail] = useState(DEFAULT_SITE_SETTINGS.email)
+
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      const s = await fetchSiteSettings()
+      if (!cancelled) setEmail(s.email || DEFAULT_SITE_SETTINGS.email)
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
   return (
     <>
       <AnnouncementBar />
@@ -16,8 +31,8 @@ export default function Bulk() {
         </p>
         <p className="mt-4 text-sm text-[#666]">
           Write to{' '}
-          <a href="mailto:printaura999@gmail.com" className="text-accent">
-            printaura999@gmail.com
+          <a href={`mailto:${email}`} className="text-accent">
+            {email}
           </a>
         </p>
       </main>

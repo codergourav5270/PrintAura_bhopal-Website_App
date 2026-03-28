@@ -1,18 +1,30 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CATEGORIES, categoryToSlug } from '../../lib/supabase'
+import {
+  DEFAULT_SITE_SETTINGS,
+  fetchSiteSettings,
+} from '../../lib/siteSettings.js'
 
-const preview = [
-  'https://placehold.co/400x533/1a1a1a/f5c518?text=Movies',
-  'https://placehold.co/400x533/1a1a1a/ffffff?text=Anime',
-  'https://placehold.co/400x533/1a1a1a/f5c518?text=Sports',
-  'https://placehold.co/400x533/1a1a1a/ffffff?text=Motivation',
-  'https://placehold.co/400x533/1a1a1a/f5c518?text=Aesthetic',
-  'https://placehold.co/400x533/1a1a1a/ffffff?text=Nature',
-  'https://placehold.co/400x533/1a1a1a/f5c518?text=Music',
-  'https://placehold.co/400x533/1a1a1a/ffffff?text=Bollywood',
-]
+const fallbackPreview = DEFAULT_SITE_SETTINGS.category_data.previews
 
 export function CategoryGrid() {
+  const [preview, setPreview] = useState(fallbackPreview)
+
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      const s = await fetchSiteSettings()
+      if (cancelled) return
+      const p = s.category_data?.previews
+      if (Array.isArray(p) && p.length >= 8) setPreview(p)
+      else setPreview(fallbackPreview)
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
   const eight = CATEGORIES.slice(0, 8)
   return (
     <section className="mx-auto max-w-7xl px-4 py-16">
@@ -33,6 +45,7 @@ export function CategoryGrid() {
               <img
                 src={preview[i] || preview[0]}
                 alt=""
+                loading="lazy"
                 className="h-full w-full object-cover opacity-80 transition group-hover:scale-105 group-hover:opacity-100"
               />
             </div>

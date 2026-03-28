@@ -1,3 +1,4 @@
+import React, { useEffect, Component } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { AdminRoute } from './components/admin/AdminRoute.jsx'
 import AdminAddProduct from './pages/admin/AdminAddProduct.jsx'
@@ -23,10 +24,39 @@ import OrderSuccess from './pages/customer/OrderSuccess.jsx'
 import Product from './pages/customer/Product.jsx'
 import Shop from './pages/customer/Shop.jsx'
 import Wishlist from './pages/customer/Wishlist.jsx'
+import { prefetchSiteConfig } from './lib/siteSettings.js'
 import './lib/seed.js'
 
+class SiteErrorBoundary extends Component {
+  constructor(props) {
+    super(props)
+    this.state = { recoverKey: 0 }
+  }
+
+  static getDerivedStateFromError() {
+    return { hadError: true }
+  }
+
+  componentDidCatch() {
+    this.setState((s) => ({ recoverKey: s.recoverKey + 1, hadError: false }))
+  }
+
+  render() {
+    return (
+      <React.Fragment key={this.state.recoverKey}>
+        {this.props.children}
+      </React.Fragment>
+    )
+  }
+}
+
 export default function App() {
+  useEffect(() => {
+    prefetchSiteConfig()
+  }, [])
+
   return (
+    <SiteErrorBoundary>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/shop" element={<Shop />} />
@@ -123,8 +153,17 @@ export default function App() {
           </AdminRoute>
         }
       />
+      <Route
+        path="/admin/*"
+        element={
+          <AdminRoute>
+            <Navigate to="/admin/dashboard" replace />
+          </AdminRoute>
+        }
+      />
 
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
+    </SiteErrorBoundary>
   )
 }

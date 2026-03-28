@@ -1,7 +1,27 @@
+import { useEffect, useState } from 'react'
 import { ArrowRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { fetchSiteSettings } from '../../lib/siteSettings.js'
 
 export function Hero() {
+  const [card, setCard] = useState(null)
+
+  useEffect(() => {
+    let cancelled = false
+    ;(async () => {
+      const s = await fetchSiteSettings()
+      if (cancelled) return
+      const c = s.hero_background?.card
+      setCard(c && c.src ? c : null)
+    })()
+    return () => {
+      cancelled = true
+    }
+  }, [])
+
+  const placeholder =
+    'https://placehold.co/600x800/1a1a1a/f5c518?text=Your+Wall%0AYour+Story'
+
   return (
     <section className="relative min-h-[85vh] overflow-hidden border-b border-border bg-gradient-to-b from-[#0a0a0a] via-[#111] to-bg">
       <div className="absolute inset-0 opacity-30">
@@ -39,11 +59,23 @@ export function Hero() {
         </div>
         <div className="mt-12 flex flex-1 justify-center lg:mt-0">
           <div className="relative aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl border border-border shadow-2xl shadow-black/50 lg:max-w-md">
-            <img
-              src="https://placehold.co/600x800/1a1a1a/f5c518?text=Your+Wall%0AYour+Story"
-              alt=""
-              className="h-full w-full object-cover"
-            />
+            {card?.type === 'video' && card.src ? (
+              <video
+                src={card.src}
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="h-full w-full object-cover"
+              />
+            ) : (
+              <img
+                src={card?.src || placeholder}
+                alt=""
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            )}
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 to-transparent p-6">
               <p className="text-sm text-accent">Editor&apos;s pick</p>
               <p className="text-lg font-semibold text-white">Minimal cinema collection</p>
