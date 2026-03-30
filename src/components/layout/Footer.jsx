@@ -41,7 +41,7 @@ export function Footer() {
             <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-base font-black text-black">
               P
             </span>
-            PrintAura_bhopal
+            {site.website_name}
           </Link>
           <p className="mt-3 text-sm leading-relaxed text-[#aaaaaa]">
             Curated wall posters shipped across India. Museum-grade print, secure
@@ -147,7 +147,7 @@ export function Footer() {
       </div>
 
       <div className="border-t border-border py-6 text-center text-xs text-[#666]">
-        © {new Date().getFullYear()} PrintAura_bhopal. All rights reserved.
+        © {new Date().getFullYear()} {site.website_name}. All rights reserved.
       </div>
 
       <div className="border-t border-border bg-[#080808] py-4 text-center">

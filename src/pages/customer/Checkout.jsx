@@ -18,7 +18,7 @@ import {
 
 const FREE_SHIP_THRESHOLD = 499
 
-const UPI_ID = 'yourname@paytm'
+const UPI_ID = 'ramandeepnathawat2553-2@okaxis'
 
 function buildItems(cartItems) {
   return cartItems.map((x) => ({
@@ -433,9 +433,9 @@ export default function Checkout() {
             </p>
 
             <div className="mt-6 flex justify-center">
-              <img
-                src={qrImageSrc}
-                alt="Payment QR code"
+            <img
+            src="/QR_Raman.jpeg"
+            alt="Payment QR code" 
                 width={250}
                 height={250}
                 className="h-[250px] w-[250px] rounded-lg border border-border bg-white object-contain"

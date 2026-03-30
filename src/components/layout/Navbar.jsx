@@ -1,15 +1,20 @@
 import { Heart, Menu, Search, ShoppingBag } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCart } from '../../context/CartContext.jsx'
 import { CATEGORIES, categoryToSlug } from '../../lib/supabase'
 import { MobileMenu } from './MobileMenu.jsx'
+import { fetchSiteSettings } from '../../lib/siteSettings'
 
 export function Navbar() {
   const { cartCount } = useCart()
   const [open, setOpen] = useState(false)
   const [q, setQ] = useState('')
   const nav = useNavigate()
+  const [siteName, setSiteName] = useState('PrintAura_bhopal')
+useEffect(() => {
+  fetchSiteSettings().then((s) => s?.website_name && setSiteName(s.website_name))
+}, [])
 
   const onSearch = (e) => {
     e.preventDefault()
@@ -38,7 +43,7 @@ export function Navbar() {
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-base font-black text-black">
                 P
               </span>
-              <span className="hidden sm:inline">PrintAura_bhopal</span>
+              <span className="hidden sm:inline">{siteName}</span>
             </Link>
           </div>
 

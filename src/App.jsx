@@ -1,4 +1,4 @@
-import React, { useEffect, Component } from 'react'
+import React, { Component } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import { AdminRoute } from './components/admin/AdminRoute.jsx'
 import AdminAddProduct from './pages/admin/AdminAddProduct.jsx'
@@ -24,7 +24,7 @@ import OrderSuccess from './pages/customer/OrderSuccess.jsx'
 import Product from './pages/customer/Product.jsx'
 import Shop from './pages/customer/Shop.jsx'
 import Wishlist from './pages/customer/Wishlist.jsx'
-import { prefetchSiteConfig } from './lib/siteSettings.js'
+// import { prefetchSiteConfig } from './lib/siteSettings.js'
 import './lib/seed.js'
 
 class SiteErrorBoundary extends Component {
@@ -51,9 +51,7 @@ class SiteErrorBoundary extends Component {
 }
 
 export default function App() {
-  useEffect(() => {
-    prefetchSiteConfig()
-  }, [])
+
 
   return (
     <SiteErrorBoundary>

@@ -11,10 +11,11 @@ import {
   Users,
   Wallet,
 } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext.jsx'
 import { supabase } from '../../lib/supabase'
+import { fetchSiteSettings } from '../../lib/siteSettings'
 
 const nav = [
   { to: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard, emoji: '📊' },
@@ -30,6 +31,10 @@ export function AdminLayout({ title, children }) {
   const { user } = useAuth()
   const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [siteName, setSiteName] = useState('PrintAura_bhopal')
+useEffect(() => {
+  fetchSiteSettings().then((s) => s?.website_name && setSiteName(s.website_name))
+}, [])
 
   const logout = async () => {
     await supabase.auth.signOut()
@@ -66,10 +71,11 @@ export function AdminLayout({ title, children }) {
       <aside className="fixed left-0 top-0 z-40 hidden h-full w-56 flex-col border-r border-border bg-adminSidebar lg:flex">
         <div className="flex items-center gap-2 border-b border-border p-4">
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-sm font-black text-black">
-            P
+            p
+
           </span>
           <div>
-            <p className="text-xs font-semibold text-white">PrintAura_bhopal</p>
+            <p className="text-xs font-semibold text-white">{siteName}</p>
             <span className="rounded bg-accent/20 px-2 py-0.5 text-[10px] font-bold text-accent">
               Admin
             </span>
