@@ -65,10 +65,11 @@ export default function Home() {
       <AnnouncementBar />
       <Navbar />
       <Hero />
-      <TrustBadges />
-      <CategoryGrid />
-      <ProductRowSection
-        title="New arrivals"
+<InstagramStrip />
+<TrustBadges />
+<CategoryGrid />
+<ProductRowSection
+  title="New arrivals"
         subtitle="Fresh drops with the NEW badge"
         products={newArrivals}
         loading={loadNew}
@@ -86,7 +87,7 @@ export default function Home() {
       />
       <HowItWorks />
       <Testimonials />
-      <InstagramStrip />
+      
       <Footer />
       <BackToTop />
       <ToastHost toast={toast} />

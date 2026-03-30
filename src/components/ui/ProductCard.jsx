@@ -87,7 +87,8 @@ export function ProductCard({ product, showToast }) {
               }
               alt=""
               loading="lazy"
-              className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+              className="h-full w-full object-cover transition duration-700 group-hover:scale-[1.08]"
+style={{ transformOrigin: 'center center' }}
             />
             {badge && (
               <span className="absolute left-2 top-2 rounded-md bg-accent px-2 py-0.5 text-xs font-semibold text-black">

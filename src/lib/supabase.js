@@ -41,9 +41,11 @@ export const CATEGORIES = [
   'Aesthetic',
   'Nature',
   'Music',
-  'Bollywood',
-  'Abstract',
-  'Minimal',
+  'Movie/Series',
+  'Car',
+  'Bike',
+  'God',
+  'Custom',
 ]
 
 export function categoryToSlug(cat) {

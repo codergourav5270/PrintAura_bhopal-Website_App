@@ -25,7 +25,8 @@ useEffect(() => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur-md"
+      style={{ backgroundColor: '#f5f0e8' }}>
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3">
           <div className="flex items-center gap-2">
             <button
@@ -38,11 +39,19 @@ useEffect(() => {
             </button>
             <Link
               to="/"
-              className="flex items-center gap-2 text-lg font-bold tracking-tight text-white"
+              className="flex items-center gap-2 text-lg font-bold tracking-tight text-[#7b1c1c]"
             >
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-base font-black text-black">
-                P
-              </span>
+              <img
+  src="/logo.jpeg"
+  alt="Logo"
+  style={{
+    height: '36px',
+    width: '36px',
+    objectFit: 'contain',
+    borderRadius: '8px',
+  }}
+/>
+        
               <span className="hidden sm:inline">{siteName}</span>
             </Link>
           </div>
@@ -50,14 +59,14 @@ useEffect(() => {
           <nav className="hidden items-center gap-6 lg:flex">
             <Link
               to="/shop"
-              className="text-sm text-[#aaaaaa] hover:text-white"
+              className="text-sm font-bold text-[#7b1c1c] hover:text-[#4a0e0e]"
             >
               Shop
             </Link>
             <div className="group relative">
               <button
                 type="button"
-                className="flex items-center gap-1 text-sm text-[#aaaaaa] hover:text-white"
+                className="flex items-center gap-1 text-sm font-bold text-[#7b1c1c] hover:text-[#4a0e0e]"
               >
                 Categories
               </button>
@@ -75,13 +84,13 @@ useEffect(() => {
             </div>
             <Link
               to="/custom-poster"
-              className="text-sm text-[#aaaaaa] hover:text-white"
+              className="text-sm font-bold text-[#7b1c1c] hover:text-[#4a0e0e]"
             >
               Custom
             </Link>
             <Link
               to="/bulk"
-              className="text-sm text-[#aaaaaa] hover:text-white"
+              className="text-sm font-bold text-[#7b1c1c] hover:text-[#4a0e0e]"
             >
               Bulk
             </Link>
@@ -103,14 +112,14 @@ useEffect(() => {
           <div className="flex items-center gap-1 sm:gap-2">
             <Link
               to="/wishlist"
-              className="flex h-11 w-11 items-center justify-center rounded-lg text-[#aaaaaa] hover:bg-white/5 hover:text-white"
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-[#7b1c1c] hover:text-[#4a0e0e]"
               aria-label="Wishlist"
             >
               <Heart className="h-5 w-5" />
             </Link>
             <Link
               to="/cart"
-              className="relative flex h-11 w-11 items-center justify-center rounded-lg text-[#aaaaaa] hover:bg-white/5 hover:text-white"
+              className="relative flex h-11 w-11 items-center justify-center rounded-lg text-[#7b1c1c] hover:text-[#4a0e0e]"
               aria-label="Cart"
             >
               <ShoppingBag className="h-5 w-5" />
@@ -126,7 +135,7 @@ useEffect(() => {
           onSubmit={onSearch}
           className="mx-auto flex max-w-7xl items-center gap-2 border-t border-border px-4 py-2 md:hidden"
         >
-          <Search className="h-4 w-4 shrink-0 text-[#666]" />
+          <Search className="h-4 w-4 shrink-0 text-[#7b1c1c]" />
           <input
             value={q}
             onChange={(e) => setQ(e.target.value)}
