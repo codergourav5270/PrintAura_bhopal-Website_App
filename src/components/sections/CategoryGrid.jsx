@@ -1,19 +1,19 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CATEGORIES, categoryToSlug } from '../../lib/supabase'
 
 const categoryImages = {
-  'Movies':       ['https://placehold.co/400x500/1a1a1a/f5c518?text=Movies+1',       'https://placehold.co/400x500/f5c518/1a1a1a?text=Movies+2'],
-  'Anime':        ['https://placehold.co/400x500/1a1a1a/f5c518?text=Anime+1',        'https://placehold.co/400x500/f5c518/1a1a1a?text=Anime+2'],
-  'Sports':       ['https://placehold.co/400x500/1a1a1a/f5c518?text=Sports+1',       'https://placehold.co/400x500/f5c518/1a1a1a?text=Sports+2'],
-  'Motivational': ['https://placehold.co/400x500/1a1a1a/f5c518?text=Motivation+1',   'https://placehold.co/400x500/f5c518/1a1a1a?text=Motivation+2'],
-  'Aesthetic':    ['https://placehold.co/400x500/1a1a1a/f5c518?text=Aesthetic+1',    'https://placehold.co/400x500/f5c518/1a1a1a?text=Aesthetic+2'],
-  'Nature':       ['https://placehold.co/400x500/1a1a1a/f5c518?text=Nature+1',       'https://placehold.co/400x500/f5c518/1a1a1a?text=Nature+2'],
-  'Music':        ['https://placehold.co/400x500/1a1a1a/f5c518?text=Music+1',        'https://placehold.co/400x500/f5c518/1a1a1a?text=Music+2'],
-  'Movie/Series': ['https://placehold.co/400x500/1a1a1a/f5c518?text=Series+1',       'https://placehold.co/400x500/f5c518/1a1a1a?text=Series+2'],
-  'Car':          ['https://placehold.co/400x500/1a1a1a/f5c518?text=Car+1',          'https://placehold.co/400x500/f5c518/1a1a1a?text=Car+2'],
-  'Bike':         ['https://placehold.co/400x500/1a1a1a/f5c518?text=Bike+1',         'https://placehold.co/400x500/f5c518/1a1a1a?text=Bike+2'],
-  'God':          ['https://placehold.co/400x500/1a1a1a/f5c518?text=God+1',          'https://placehold.co/400x500/f5c518/1a1a1a?text=God+2'],
+  'Movies':       ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416971/mov-1_jurffv.jpg',   'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416970/mov-2_zqzjdg.jpg'],
+  'Anime':        ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416875/a-1_wi7hkk.jpg',    'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416929/a-2_hbgias.jpg'],
+  'Sports':       ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416998/S-1_lgzzel.jpg',    'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416998/s-2_g6fjc2.jpg'],
+  'Motivational': ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416970/Mot-1_w2sofq.jpg',  'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416971/mot-2_hoi7mw.jpg'],
+  'Aesthetic':    ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416970/m-1_jtmhrm.jpg',    'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416970/m-2_i5v0ij.jpg'],
+  'Nature':       ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416969/Nat-1_scxzc8.jpg',  'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416970/nat-2_wkn8oz.jpg'],
+  'Music':        ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416970/mus-1_w5fjzc.jpg',  'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416969/mus-2_chzyy8.jpg'],
+  'Movie/Series': ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416998/ser-1_s5l1yv.jpg',  'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416998/ser-2_lgnoji.jpg'],
+  'Car':          ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416929/car-1_sabw7n.jpg',  'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416929/car-2_w7x5kp.jpg'],
+  'Bike':         ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416929/bike-1_v45hic.jpg', 'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416929/bike-2_kq5gcr.jpg'],
+  'God':          ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416928/god-1_zi342r.jpg',  'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416929/god-2_pi9ug9.jpg'],
 }
 
 function CategoryCard({ c }) {
@@ -26,6 +26,11 @@ function CategoryCard({ c }) {
       className="group relative w-[72vw] shrink-0 overflow-hidden rounded-2xl border border-border bg-card md:w-auto"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
+      style={{
+        transform: hovered ? 'perspective(800px) rotateX(4deg) rotateY(-4deg) scale(1.03)' : 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)',
+        transition: 'transform 0.4s ease, box-shadow 0.4s ease',
+        boxShadow: hovered ? '0 0 25px 6px rgba(107, 15, 26, 0.7)' : '0 0 0px transparent',
+      }}
     >
       <div className="aspect-[4/5]" style={{ position: 'relative' }}>
         <img
@@ -47,7 +52,8 @@ function CategoryCard({ c }) {
             position: 'absolute', inset: 0,
             width: '100%', height: '100%', objectFit: 'cover',
             opacity: hovered ? 1 : 0,
-            transition: 'opacity 0.4s ease',
+            transform: hovered ? 'scale(1.1)' : 'scale(1)',
+            transition: 'opacity 0.4s ease, transform 0.4s ease',
           }}
         />
       </div>
@@ -60,13 +66,17 @@ function CategoryCard({ c }) {
 export function CategoryGrid() {
   return (
     <section className="mx-auto max-w-7xl px-4 py-16">
-      <h2 className="text-center text-2xl font-bold text-white md:text-3xl">
-        Shop by category
-      </h2>
-      <p className="mx-auto mt-2 max-w-xl text-center text-sm text-[#aaaaaa]">
-        Scroll on mobile — eleven curated worlds of wall art.
-      </p>
-      <div className="mt-10 flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:overflow-visible">
+      <div className="flex justify-center mb-10">
+        <div className="bg-[#f5f0e8] rounded-2xl px-6 py-3 text-center">
+          <h2 className="text-2xl font-bold text-[#7b1c1c] md:text-3xl">
+            Shop by category
+          </h2>
+          <p className="mt-1 text-sm text-[#7b1c1c]">
+            Scroll on mobile — eleven curated worlds of wall art.
+          </p>
+        </div>
+      </div>
+      <div className="flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:overflow-visible">
         {CATEGORIES.map((c) => (
           <CategoryCard key={c} c={c} />
         ))}

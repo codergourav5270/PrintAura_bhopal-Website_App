@@ -4,11 +4,11 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#0a0a0a',
-        card: '#1a1a1a',
-        accent: '#f5c518',
-        border: '#2a2a2a',
-        adminSidebar: '#0d0d0d',
+        bg: '#ffffff',
+        card: '#f5f0e8',
+        accent: '#6B0F1A',
+        border: '#e0d8cc',
+        adminSidebar: '#f5f0e8',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

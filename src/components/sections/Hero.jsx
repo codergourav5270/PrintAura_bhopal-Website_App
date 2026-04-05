@@ -45,7 +45,7 @@ export function Hero() {
         <p style={{
           letterSpacing: '0.3em',
           fontSize: '13px',
-          color: '#f5c518',
+          color: '#7b1c1c',
           fontWeight: 500,
           textTransform: 'uppercase',
         }}>
@@ -54,7 +54,7 @@ export function Hero() {
         <h2 style={{
           letterSpacing: '0.2em',
           fontSize: 'clamp(22px, 4vw, 36px)',
-          color: '#ffffff',
+          color: '#7b1c1c',
           fontWeight: 700,
           marginTop: '8px',
           textTransform: 'uppercase',

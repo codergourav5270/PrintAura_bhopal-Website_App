@@ -37,31 +37,26 @@ export function Footer() {
     <footer className="mt-20 border-t border-border bg-[#0d0d0d]">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-2 lg:grid-cols-4">
         <div>
-          <Link to="/" className="flex items-center gap-2 text-lg font-bold text-white">
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-base font-black text-black">
-              P
-            </span>
+        <Link to="/" className="flex items-center gap-2 text-lg font-bold text-[#7b1c1c]">
+          <img src="/logo.jpeg" alt="Logo" style={{ height: '36px', width: '36px', objectFit: 'contain', borderRadius: '8px' }} />
             {site.website_name}
           </Link>
-          <p className="mt-3 text-sm leading-relaxed text-[#aaaaaa]">
+          <p className="mt-3 text-sm leading-relaxed text-[#f5f0e8]">
             Curated wall posters shipped across India. Museum-grade print, secure
             packaging, happiness guaranteed.
           </p>
         </div>
         <div>
-          <p className="text-sm font-semibold text-white">Shop</p>
+          <p className="text-sm font-semibold text-[#7b1c1c]">Shop</p>
           <ul className="mt-3 space-y-2">
             <li>
-              <Link to="/shop" className="text-sm text-[#aaaaaa] hover:text-accent">
+              <Link to="/shop" className="text-sm text-[#f5f0e8] hover:text-accent">
                 All posters
               </Link>
             </li>
             {CATEGORIES.slice(0, 6).map((c) => (
               <li key={c}>
-                <Link
-                  to={`/category/${categoryToSlug(c)}`}
-                  className="text-sm text-[#aaaaaa] hover:text-accent"
-                >
+                <Link to={`/category/${categoryToSlug(c)}`} className="text-sm text-[#f5f0e8] hover:text-accent">
                   {c}
                 </Link>
               </li>
@@ -69,38 +64,35 @@ export function Footer() {
           </ul>
         </div>
         <div>
-          <p className="text-sm font-semibold text-white">Company</p>
+          <p className="text-sm font-semibold text-[#7b1c1c]">Company</p>
           <ul className="mt-3 space-y-2">
             <li>
-              <Link to="/about" className="text-sm text-[#aaaaaa] hover:text-accent">
+              <Link to="/about" className="text-sm text-[#f5f0e8] hover:text-accent">
                 About us
               </Link>
             </li>
             <li>
-              <Link to="/contact" className="text-sm text-[#aaaaaa] hover:text-accent">
+              <Link to="/contact" className="text-sm text-[#f5f0e8] hover:text-accent">
                 Contact
               </Link>
             </li>
             <li>
-              <Link to="/bulk" className="text-sm text-[#aaaaaa] hover:text-accent">
+              <Link to="/bulk" className="text-sm text-[#f5f0e8] hover:text-accent">
                 Bulk orders
               </Link>
             </li>
             <li>
-              <Link
-                to="/custom-poster"
-                className="text-sm text-[#aaaaaa] hover:text-accent"
-              >
+              <Link to="/custom-poster" className="text-sm text-[#f5f0e8] hover:text-accent">
                 Custom poster
               </Link>
             </li>
           </ul>
         </div>
         <div>
-          <p className="text-sm font-semibold text-white">Links</p>
+          <p className="text-sm font-semibold text-[#7b1c1c]">Links</p>
           <ul className="mt-3 space-y-2">
             <li>
-              <Link to="/contact" className="text-sm text-[#aaaaaa] hover:text-accent">
+              <Link to="/contact" className="text-sm text-[#f5f0e8] hover:text-accent">
                 Contact page
               </Link>
             </li>
@@ -108,62 +100,21 @@ export function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-border bg-[#0a0a0a]">
-        <div className="mx-auto max-w-7xl px-4 py-10">
-          <p className="text-sm font-semibold text-white">Website Name</p>
-          <p className="mt-1 text-sm text-[#aaaaaa]">{site.website_name}</p>
-
-          <p className="mt-6 text-sm font-semibold text-white">Official Email</p>
-          <a
-            href={`mailto:${site.email}`}
-            className="mt-1 block text-sm text-accent hover:underline"
-          >
-            {site.email}
-          </a>
-
-          <p className="mt-6 text-sm font-semibold text-white">For Enquiries</p>
-          <a
-            href={`mailto:${enquiriesEmail}`}
-            className="mt-1 block text-sm text-accent hover:underline"
-          >
-            {enquiriesEmail}
-          </a>
-
-          <p className="mt-6 text-sm font-semibold text-white">Help &amp; Support</p>
-          <a
-            href={`mailto:${helpEmail}`}
-            className="mt-1 block text-sm text-accent hover:underline"
-          >
-            {helpEmail}
-          </a>
-
-          <p className="mt-6 text-sm font-semibold text-white">Direct Contact</p>
-          <ul className="mt-2 space-y-2 text-sm text-[#aaaaaa]">
-            {phones.map((p) => (
-              <li key={p}>{p}</li>
-            ))}
-          </ul>
-        </div>
-      </div>
-
-      <div className="border-t border-border py-6 text-center text-xs text-[#666]">
+      <div className="border-t border-border py-6 text-center text-xs text-[#f5f0e8]">
         © {new Date().getFullYear()} {site.website_name}. All rights reserved.
       </div>
 
       <div className="border-t border-border bg-[#080808] py-4 text-center">
-        <p className="text-[10px] leading-relaxed text-[#555] sm:text-[11px]">
+        <p className="text-[10px] leading-relaxed text-[#f5f0e8] sm:text-[11px]">
           Website Developed &amp; Managed By Gourav Singh
           <span className="mx-2 text-[#444]">·</span>
           Contact{' '}
-          <a href="tel:7380931628" className="text-[#666] hover:text-[#888]">
+          <a href="tel:7380931628" className="text-[#f5f0e8] hover:text-accent">
             7380931628
           </a>
           <span className="mx-2 text-[#444]">·</span>
           Email{' '}
-          <a
-            href="mailto:gourav5270singh@gmail.com"
-            className="text-[#666] hover:text-[#888]"
-          >
+          <a href="mailto:gourav5270singh@gmail.com" className="text-[#f5f0e8] hover:text-accent">
             gourav5270singh@gmail.com
           </a>
         </p>

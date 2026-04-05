@@ -77,16 +77,8 @@ export default function Home() {
         showToast={showToast}
       />
       <CustomPosterCta />
-      <ProductRowSection
-        title="Bestsellers"
-        subtitle="Community favourites"
-        products={bestsellers}
-        loading={loadBest}
-        error={errBest}
-        showToast={showToast}
-      />
       <HowItWorks />
-      <Testimonials />
+      
       
       <Footer />
       <BackToTop />

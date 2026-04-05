@@ -7,7 +7,8 @@
     @apply scroll-smooth;
   }
   body {
-    @apply bg-bg text-white font-sans antialiased;
+    @apply bg-bg font-sans antialiased;
+    color: #1a1a1a;
   }
 }
 

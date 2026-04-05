@@ -12,9 +12,9 @@ export function Navbar() {
   const [q, setQ] = useState('')
   const nav = useNavigate()
   const [siteName, setSiteName] = useState('PrintAura_bhopal')
-useEffect(() => {
-  fetchSiteSettings().then((s) => s?.website_name && setSiteName(s.website_name))
-}, [])
+  useEffect(() => {
+    fetchSiteSettings().then((s) => s?.website_name && setSiteName(s.website_name))
+  }, [])
 
   const onSearch = (e) => {
     e.preventDefault()
@@ -26,7 +26,7 @@ useEffect(() => {
   return (
     <>
       <header className="sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur-md"
-      style={{ backgroundColor: '#f5f0e8' }}>
+        style={{ backgroundColor: '#f5f0e8' }}>
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3">
           <div className="flex items-center gap-2">
             <button
@@ -42,25 +42,21 @@ useEffect(() => {
               className="flex items-center gap-2 text-lg font-bold tracking-tight text-[#7b1c1c]"
             >
               <img
-  src="/logo.jpeg"
-  alt="Logo"
-  style={{
-    height: '36px',
-    width: '36px',
-    objectFit: 'contain',
-    borderRadius: '8px',
-  }}
-/>
-        
+                src="/logo.jpeg"
+                alt="Logo"
+                style={{
+                  height: '36px',
+                  width: '36px',
+                  objectFit: 'contain',
+                  borderRadius: '8px',
+                }}
+              />
               <span className="hidden sm:inline">{siteName}</span>
             </Link>
           </div>
 
           <nav className="hidden items-center gap-6 lg:flex">
-            <Link
-              to="/shop"
-              className="text-sm font-bold text-[#7b1c1c] hover:text-[#4a0e0e]"
-            >
+            <Link to="/shop" className="text-sm font-bold text-[#7b1c1c] hover:text-[#4a0e0e]">
               Shop
             </Link>
             <div className="group relative">
@@ -82,30 +78,24 @@ useEffect(() => {
                 ))}
               </div>
             </div>
-            <Link
-              to="/custom-poster"
-              className="text-sm font-bold text-[#7b1c1c] hover:text-[#4a0e0e]"
-            >
+            <Link to="/custom-poster" className="text-sm font-bold text-[#7b1c1c] hover:text-[#4a0e0e]">
               Custom
             </Link>
-            <Link
-              to="/bulk"
-              className="text-sm font-bold text-[#7b1c1c] hover:text-[#4a0e0e]"
-            >
+            <Link to="/bulk" className="text-sm font-bold text-[#7b1c1c] hover:text-[#4a0e0e]">
               Bulk
             </Link>
           </nav>
 
           <form
             onSubmit={onSearch}
-            className="hidden max-w-xs flex-1 items-center gap-2 rounded-xl border border-border bg-card px-3 md:flex"
+            className="hidden max-w-xs flex-1 items-center gap-2 rounded-xl border border-border bg-black px-3 md:flex"
           >
-            <Search className="h-4 w-4 shrink-0 text-[#666]" />
+            <Search className="h-4 w-4 shrink-0 text-white" />
             <input
               value={q}
               onChange={(e) => setQ(e.target.value)}
               placeholder="Search posters..."
-              className="min-h-[44px] w-full bg-transparent py-2 text-sm text-white outline-none placeholder:text-[#666]"
+              className="min-h-[44px] w-full bg-transparent py-2 text-sm text-white outline-none placeholder:text-white"
             />
           </form>
 
@@ -131,6 +121,7 @@ useEffect(() => {
             </Link>
           </div>
         </div>
+
         <form
           onSubmit={onSearch}
           className="mx-auto flex max-w-7xl items-center gap-2 border-t border-border px-4 py-2 md:hidden"
@@ -140,7 +131,7 @@ useEffect(() => {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Search..."
-            className="min-h-[44px] w-full bg-transparent text-sm text-white outline-none placeholder:text-[#666]"
+            className="min-h-[44px] w-full bg-transparent text-sm text-black outline-none placeholder:text-black"
           />
         </form>
       </header>

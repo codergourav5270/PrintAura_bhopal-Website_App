@@ -39,36 +39,28 @@ export default function Contact() {
       <AnnouncementBar />
       <Navbar />
       <main className="mx-auto max-w-3xl px-4 py-16">
-        <h1 className="text-3xl font-bold text-white">Contact</h1>
-        <p className="mt-6 text-sm font-semibold text-white">Website Name</p>
-        <p className="mt-1 text-[#aaaaaa]">{site.website_name}</p>
+        <h1 className="text-3xl font-bold text-[#7b1c1c]">Contact</h1>
 
-        <p className="mt-6 text-sm font-semibold text-white">Official Email</p>
-        <a
-          href={`mailto:${site.email}`}
-          className="mt-1 block text-accent hover:underline"
-        >
+        <p className="mt-6 text-sm font-semibold text-[#7b1c1c]">Website Name</p>
+        <p className="mt-1 text-[#1a1a1a]">{site.website_name}</p>
+
+        <p className="mt-6 text-sm font-semibold text-[#7b1c1c]">Official Email</p>
+        <a href={`mailto:${site.email}`} className="mt-1 block text-[#7b1c1c] hover:underline">
           {site.email}
         </a>
 
-        <p className="mt-6 text-sm font-semibold text-white">For Enquiries</p>
-        <a
-          href={`mailto:${enquiriesEmail}`}
-          className="mt-1 block text-accent hover:underline"
-        >
+        <p className="mt-6 text-sm font-semibold text-[#7b1c1c]">For Enquiries</p>
+        <a href={`mailto:${enquiriesEmail}`} className="mt-1 block text-[#7b1c1c] hover:underline">
           {enquiriesEmail}
         </a>
 
-        <p className="mt-6 text-sm font-semibold text-white">Help &amp; Support</p>
-        <a
-          href={`mailto:${helpEmail}`}
-          className="mt-1 block text-accent hover:underline"
-        >
+        <p className="mt-6 text-sm font-semibold text-[#7b1c1c]">Help &amp; Support</p>
+        <a href={`mailto:${helpEmail}`} className="mt-1 block text-[#7b1c1c] hover:underline">
           {helpEmail}
         </a>
 
-        <p className="mt-6 text-sm font-semibold text-white">Direct Contact</p>
-        <ul className="mt-2 space-y-2 text-[#aaaaaa]">
+        <p className="mt-6 text-sm font-semibold text-[#7b1c1c]">Direct Contact</p>
+        <ul className="mt-2 space-y-2 text-[#1a1a1a]">
           {phones.map((p) => (
             <li key={p}>{p}</li>
           ))}

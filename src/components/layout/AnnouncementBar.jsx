@@ -7,8 +7,7 @@ export function AnnouncementBar() {
           across India
         </span>
         <span className="mx-8">
-          Free shipping on orders above ₹499 · Premium matte finish · COD available
-          across India
+        Buy 4 → Get 7 · Buy 5 → Get 10 · Buy 6 → Get 18 · Mix any designs · Free shipping on prepaid orders
         </span>
       </div>
       <style>{`
