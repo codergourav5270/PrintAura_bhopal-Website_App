@@ -135,7 +135,7 @@ export function InstagramStrip() {
       <ScrollStrip direction="right" />
 
       {/* 3 Video carousels */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', padding: '16px 24px' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(3, 1fr)', gap: '16px', padding: '16px 24px' }}>
         {videoGroups.slice(0, 3).map((group, i) => (
           <VideoCarousel key={i} vids={group} />
         ))}

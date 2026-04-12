@@ -197,7 +197,7 @@ export function ProductCard({ product, showToast }) {
                 className={`h-5 w-5 ${wishlisted ? 'fill-accent text-accent' : ''}`}
               />
             </button>
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-black/80 to-transparent p-3 opacity-0 transition group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 z-10">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-black/80 to-transparent p-3 opacity-0 transition group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 [@media(hover:none)]:pointer-events-auto [@media(hover:none)]:translate-y-0 [@media(hover:none)]:opacity-100 z-10">
               <button
                 type="button"
                 onClick={onAddClick}
@@ -209,14 +209,14 @@ export function ProductCard({ product, showToast }) {
             </div>
           </div>
           <div className="space-y-1 p-3">
-            <p className="line-clamp-1 text-sm font-medium text-white">
+          <p className="line-clamp-1 text-sm font-medium text-gray-900">
               {product.name}
             </p>
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-md border border-border bg-bg px-2 py-0.5 text-[11px] text-[#aaaaaa]">
                 {product.category}
               </span>
-              <span className="text-[11px] text-[#aaaaaa]">
+              <span className="text-[11px] text-gray-500">
                 ★ {pseudoRating(id)}
               </span>
             </div>

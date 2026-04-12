@@ -3,49 +3,39 @@ import { Link } from 'react-router-dom'
 export function Hero() {
   return (
     <section
+      className="hero-section"
       style={{
         position: 'relative',
-        minHeight: '100vh',
-        background: '#080808',
+        minHeight: '100dvh',
+        backgroundImage: 'url(/wall.jpeg)',
+        backgroundSize: 'contain',
+backgroundPosition: 'center center',
+backgroundRepeat: 'no-repeat',
+backgroundColor: '#1a1a1a',
+        backgroundRepeat: 'no-repeat',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'space-between',
         overflow: 'hidden',
-        paddingTop: '2rem',
-        paddingBottom: '3rem',
+        paddingTop: 'clamp(1rem, 4vw, 2rem)',
+        paddingBottom: 'clamp(1.5rem, 5vw, 3rem)',
       }}
     >
-      {/* Full screen background image */}
+      {/* Dark overlay so text is readable */}
       <div style={{
         position: 'absolute',
-        inset: '20px',
+        inset: 0,
+        background: 'rgba(0,0,0,0.25)',
         zIndex: 1,
-        borderRadius: '16px',
-        overflow: 'hidden',
-      }}>
-        <img
-          src="/wall.jpeg"
-          alt=""
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center',
-            animation: 'floatUp 6s ease-in-out infinite',
-            filter: 'brightness(1.1) contrast(1.05)',
-          }}
-        />
-      </div>
-
-      
+      }} />
 
       {/* Top brand name */}
       <div style={{ position: 'relative', zIndex: 10, textAlign: 'center' }}>
         <p style={{
           letterSpacing: '0.3em',
-          fontSize: '13px',
-          color: '#7b1c1c',
+          fontSize: 'clamp(10px, 2vw, 13px)',
+          color: '#ffffff',
           fontWeight: 500,
           textTransform: 'uppercase',
         }}>
@@ -53,8 +43,8 @@ export function Hero() {
         </p>
         <h2 style={{
           letterSpacing: '0.2em',
-          fontSize: 'clamp(22px, 4vw, 36px)',
-          color: '#7b1c1c',
+          fontSize: 'clamp(18px, 4vw, 36px)',
+          color: '#c0392b',
           fontWeight: 700,
           marginTop: '8px',
           textTransform: 'uppercase',
@@ -81,14 +71,16 @@ export function Hero() {
             display: 'inline-block',
             border: '1.5px solid #ffffff',
             color: '#ffffff',
-            padding: '14px 48px',
-            letterSpacing: '0.25em',
-            fontSize: '13px',
-            fontWeight: 600,
+            
+
             textTransform: 'uppercase',
             textDecoration: 'none',
             transition: 'all 0.3s',
-            
+            padding: 'clamp(12px, 3vw, 14px) clamp(20px, 7vw, 48px)',
+            fontSize: 'clamp(11px, 2.5vw, 13px)',
+            maxWidth: '280px',
+            width: '90%',
+            textAlign: 'center',
           }}
           onMouseEnter={(e) => {
             e.target.style.background = '#ffffff'
@@ -105,7 +97,7 @@ export function Hero() {
           to="/custom-poster"
           style={{
             fontSize: '12px',
-            color: '#aaa',
+            color: '#ddd',
             letterSpacing: '0.15em',
             textTransform: 'uppercase',
             textDecoration: 'none',
@@ -115,13 +107,7 @@ export function Hero() {
         </Link>
       </div>
 
-      {/* Float animation */}
-      <style>{`
-        @keyframes floatUp {
-          0%, 100% { transform: translateY(0px) scale(1.02); }
-          50% { transform: translateY(-15px) scale(1.04); }
-        }
-      `}</style>
+      {/* Float animation removed — not needed for background */}
     </section>
   )
 }

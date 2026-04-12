@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export function CustomPosterCta() {
   return (
-    <section className="mx-4 my-8 overflow-hidden rounded-2xl md:mx-auto md:max-w-7xl"
+    <section className="md:mx-auto md:max-w-7xl"
     style={{ background: '#f5f0e8', position: 'relative' }}>
 
       <div className="relative px-6 py-14 lg:px-16">

@@ -31,7 +31,7 @@ export function Navbar() {
           <div className="flex items-center gap-2">
             <button
               type="button"
-              className="flex h-11 w-11 items-center justify-center rounded-lg text-white lg:hidden"
+              className="flex h-11 w-11 items-center justify-center rounded-lg text-[#7b1c1c] lg:hidden"
               onClick={() => setOpen(true)}
               aria-label="Open menu"
             >

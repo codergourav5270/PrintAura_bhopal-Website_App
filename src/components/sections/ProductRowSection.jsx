@@ -21,7 +21,7 @@ export function ProductRowSection({
               <p className="mt-1 text-sm text-[#7b1c1c]">{subtitle}</p>
             )}
           </div>
-        </div>
+        </div>image.png
         <Link
           to={viewAllTo}
           className="text-sm font-medium text-accent hover:underline shrink-0"
