@@ -14,7 +14,7 @@ const videos = [
   'https://res.cloudinary.com/dqlzmrztl/video/upload/q_75,w_400,f_mp4/v1774856380/VN20260302_182958_arattj.mp4',
   'https://res.cloudinary.com/dqlzmrztl/video/upload/q_75,w_400,f_mp4/v1774856378/VID-20260216-WA0056_1_yui8vi.mp4',
   'https://res.cloudinary.com/dqlzmrztl/video/upload/q_75,w_400,f_mp4/v1774856375/VID-20260203-WA0288_yauv6p.mp4',
-  'https://res.cloudinary.com/dqlzmrztl/video/upload/q_75,w_400,f_mp4/v1774856375/VID-20260313-WA0058_urjeoe.mp4',    
+  'https://res.cloudinary.com/dqlzmrztl/video/upload/q_75,w_400,f_mp4/v1774856375/VID-20260313-WA0058_urjeoe.mp4',
 ]
 
 const thumbnails = [
@@ -59,12 +59,12 @@ function ScrollStrip({ direction }) {
   return (
     <div style={{ overflow: 'hidden', width: '100%' }}>
       <div style={{
-        display: 'flex', gap: '10px',
-        animation: `${direction === 'left' ? 'scrollLeft' : 'scrollRight'} 25s linear infinite`,
+        display: 'flex', gap: '12px',
+        animation: `${direction === 'left' ? 'scrollLeft' : 'scrollRight'} 40s linear infinite`,
         width: 'max-content',
       }}>
         {[...thumbnails, ...thumbnails, ...thumbnails].map((src, i) => (
-          <img key={i} src={src} alt="" style={{ width: '140px', height: '140px', objectFit: 'cover', borderRadius: '10px', flexShrink: 0 }} />
+          <img key={i} src={src} alt="" style={{ width: '380px', height: '400px', objectFit: 'cover', borderRadius: '10px', flexShrink: 0 }} />
         ))}
       </div>
     </div>
@@ -88,7 +88,7 @@ function VideoCarousel({ vids }) {
           pointerEvents: current === i ? 'auto' : 'none',
         }}>
           <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer" style={{ display: 'block', width: '100%', height: '100%' }}>
-          <VideoItem src={src} active={current === i} preload={i === (current + 1) % vids.length} />
+            <VideoItem src={src} active={current === i} preload={i === (current + 1) % vids.length} />
           </a>
         </div>
       ))}
@@ -121,27 +121,29 @@ export function InstagramStrip() {
 
       {/* Header */}
       <div className="mx-auto max-w-7xl px-4 text-center mb-8">
-  <div className="inline-block bg-[#f5f0e8] rounded-2xl px-6 py-3">
-    <p className="text-sm font-medium" style={{ color: '#6B0F1A' }}>@printaura_bhopal</p>
-    <h2 className="mt-1 text-xl font-bold" style={{ color: '#6B0F1A' }}>On your wall soon</h2>
-    <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"
-      className="mt-4 inline-block rounded-lg px-5 py-2 text-sm font-bold text-white hover:opacity-90" style={{ background: '#6B0F1A' }}>
-      Follow us on Instagram
-    </a>
-  </div>
-</div>
-
-      {/* Row 1 — Left to Right strip */}
-      <ScrollStrip direction="right" />
-
-      {/* 3 Video carousels */}
-      <div style={{ display: 'grid', gridTemplateColumns: window.innerWidth < 768 ? '1fr' : 'repeat(3, 1fr)', gap: '16px', padding: '16px 24px' }}>
-        {videoGroups.slice(0, 3).map((group, i) => (
-          <VideoCarousel key={i} vids={group} />
-        ))}
+        <div className="inline-block bg-[#f5f0e8] rounded-2xl px-6 py-3">
+          <p className="text-sm font-medium" style={{ color: '#6B0F1A' }}>@printaura_bhopal</p>
+          <h2 className="mt-1 text-xl font-bold" style={{ color: '#6B0F1A' }}>On your wall soon</h2>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noopener noreferrer"
+            className="mt-4 inline-block rounded-lg px-5 py-2 text-sm font-bold text-white hover:opacity-90" style={{ background: '#6B0F1A' }}>
+            Follow us on Instagram
+          </a>
+        </div>
       </div>
 
-      {/* Row 2 — Right to Left strip */}
+      {/* Row 1 — scrolling image strip */}
+      <ScrollStrip direction="right" />
+
+      {/* Video carousels — HIDDEN on mobile, VISIBLE on desktop only */}
+      <div className="hidden md:block" style={{ padding: '16px 24px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
+          {videoGroups.slice(0, 3).map((group, i) => (
+            <VideoCarousel key={i} vids={group} />
+          ))}
+        </div>
+      </div>
+
+      {/* Row 2 — scrolling image strip */}
       <ScrollStrip direction="left" />
 
       <style>{`

@@ -67,9 +67,7 @@ export default function Product() {
       }
       setLoading(false)
     })()
-    return () => {
-      cancelled = true
-    }
+    return () => { cancelled = true }
   }, [id])
 
   const sizes = useMemo(
@@ -130,9 +128,7 @@ export default function Product() {
         <Navbar />
         <main className="mx-auto max-w-7xl px-4 py-20 text-center">
           <p className="text-[#aaaaaa]">{err || 'Not found'}</p>
-          <Link to="/shop" className="mt-4 inline-block text-accent">
-            Shop
-          </Link>
+          <Link to="/shop" className="mt-4 inline-block text-accent">Shop</Link>
         </main>
         <Footer />
       </>
@@ -170,13 +166,14 @@ export default function Product() {
               </div>
             )}
           </div>
+
           <div>
             {product.badge && (
               <span className="inline-block rounded-md bg-accent px-2 py-0.5 text-xs font-bold text-black">
                 {product.badge}
               </span>
             )}
-            <h1 className="mt-2 text-3xl font-bold text-white">{product.name}</h1>
+            <h1 className="mt-2 text-3xl font-bold text-[#7b1c1c]">{product.name}</h1>
             <p className="mt-2 text-sm text-[#aaaaaa]">{product.category}</p>
             <div className="mt-4 flex items-baseline gap-2">
               <span className="text-2xl font-semibold text-accent">
@@ -193,7 +190,7 @@ export default function Product() {
             </p>
 
             <div className="mt-8">
-              <p className="text-sm font-medium text-white">Size</p>
+              <p className="text-sm font-medium text-[#7b1c1c]">Size</p>
               <div className="mt-2 flex flex-wrap gap-2">
                 {sizes.map((s, i) => (
                   <button
@@ -217,7 +214,7 @@ export default function Product() {
               <div className="flex items-center rounded-xl border border-border">
                 <button
                   type="button"
-                  className="flex h-12 w-12 items-center justify-center text-white"
+                  className="flex h-12 w-12 items-center justify-center text-[#7b1c1c]"
                   onClick={() => setQty((q) => Math.max(1, q - 1))}
                 >
                   <Minus className="h-4 w-4" />
@@ -225,7 +222,7 @@ export default function Product() {
                 <span className="w-10 text-center text-sm font-medium">{qty}</span>
                 <button
                   type="button"
-                  className="flex h-12 w-12 items-center justify-center text-white"
+                  className="flex h-12 w-12 items-center justify-center text-[#7b1c1c]"
                   onClick={() => setQty((q) => q + 1)}
                 >
                   <Plus className="h-4 w-4" />
@@ -247,15 +244,11 @@ export default function Product() {
                 type="button"
                 onClick={() => {
                   toggle(product.id)
-                  showToast(
-                    has(product.id) ? 'Removed from wishlist' : 'Saved to wishlist'
-                  )
+                  showToast(has(product.id) ? 'Removed from wishlist' : 'Saved to wishlist')
                 }}
-                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-border px-6 py-3 font-medium text-white hover:border-accent/40"
+                className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-border px-6 py-3 font-medium text-[#7b1c1c] hover:border-accent/40"
               >
-                <Heart
-                  className={`h-5 w-5 ${has(product.id) ? 'fill-accent text-accent' : ''}`}
-                />
+                <Heart className={`h-5 w-5 ${has(product.id) ? 'fill-accent text-accent' : ''}`} />
                 Wishlist
               </button>
             </div>
@@ -264,7 +257,7 @@ export default function Product() {
 
         {related.length > 0 && (
           <section className="mt-20">
-            <h2 className="text-xl font-bold text-white">You may also like</h2>
+            <h2 className="text-xl font-bold text-[#7b1c1c]">You may also like</h2>
             <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
               {related.map((p) => (
                 <ProductCard key={p.id} product={p} showToast={showToast} />

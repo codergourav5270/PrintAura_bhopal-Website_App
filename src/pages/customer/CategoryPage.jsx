@@ -48,7 +48,7 @@ export default function CategoryPage() {
         <AnnouncementBar />
         <Navbar />
         <main className="mx-auto max-w-7xl px-4 py-20 text-center">
-          <h1 className="text-2xl font-bold text-white">Category not found</h1>
+        <h1 className="text-2xl font-bold text-[#7b1c1c]">Category not found</h1>
           <Link to="/shop" className="mt-4 inline-block text-accent hover:underline">
             Back to shop
           </Link>
@@ -63,7 +63,7 @@ export default function CategoryPage() {
       <AnnouncementBar />
       <Navbar />
       <main className="mx-auto max-w-7xl px-4 py-10">
-        <h1 className="text-3xl font-bold text-white">{title}</h1>
+      <h1 className="text-3xl font-bold text-[#7b1c1c]">{title}</h1>
         <p className="mt-1 text-sm text-[#aaaaaa]">
           Posters tagged under {title}.
         </p>

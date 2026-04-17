@@ -23,7 +23,7 @@ function CategoryCard({ c }) {
   return (
     <Link
       to={`/category/${categoryToSlug(c)}`}
-      className="group relative w-[72vw] shrink-0 overflow-hidden rounded-2xl border border-border bg-card md:w-auto"
+      className="group relative overflow-hidden rounded-2xl border border-border bg-card w-full"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
@@ -72,11 +72,13 @@ export function CategoryGrid() {
             Shop by category
           </h2>
           <p className="mt-1 text-sm text-[#7b1c1c]">
-            Scroll on mobile — eleven curated worlds of wall art.
+            Eleven curated worlds of wall art.
           </p>
         </div>
       </div>
-      <div className="flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-4 md:overflow-visible">
+
+      {/* 3 columns on mobile, 4 columns on desktop */}
+      <div className="grid grid-cols-3 gap-2 md:grid-cols-4 md:gap-4">
         {CATEGORIES.map((c) => (
           <CategoryCard key={c} c={c} />
         ))}

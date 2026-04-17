@@ -23,13 +23,13 @@ export default function CustomPoster() {
       <AnnouncementBar />
       <Navbar />
       <main className="mx-auto max-w-3xl px-4 py-16">
-        <h1 className="text-3xl font-bold text-white">Custom poster</h1>
-        <p className="mt-4 text-[#aaaaaa] leading-relaxed">
+        <h1 className="text-3xl font-bold text-gray-900">Custom poster</h1>
+        <p className="mt-4 text-gray-700 leading-relaxed">
           Upload a high-resolution image (300 DPI recommended). Our team reviews every
           file for print safety, colour balance, and cropping. You&apos;ll receive a
           digital proof before we print.
         </p>
-        <ul className="mt-6 list-disc space-y-2 pl-5 text-sm text-[#cccccc]">
+        <ul className="mt-6 list-disc space-y-2 pl-5 text-sm text-gray-700">
           <li>Accepted: JPG, PNG, PDF up to 50 MB</li>
           <li>Popular sizes: A4, A3, A2, and large format 24×36</li>
           <li>Typical turnaround: 4–6 business days</li>
