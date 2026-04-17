@@ -64,7 +64,7 @@ function ScrollStrip({ direction }) {
         width: 'max-content',
       }}>
         {[...thumbnails, ...thumbnails, ...thumbnails].map((src, i) => (
-          <img key={i} src={src} alt="" style={{ width: '380px', height: '400px', objectFit: 'cover', borderRadius: '10px', flexShrink: 0 }} />
+          <img key={i} src={src} alt="" style={{ width: '230px', height: '260px', objectFit: 'cover', borderRadius: '10px', flexShrink: 0 }} />
         ))}
       </div>
     </div>
