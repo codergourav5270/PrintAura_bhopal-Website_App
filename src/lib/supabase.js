@@ -44,8 +44,12 @@ export const CATEGORIES = [
   'Movie/Series',
   'Car',
   'Bike',
-  'God',
+  'God / Spiritual',
   'Custom',
+  'Girls Point',
+  'Love',
+  'Gym',
+  'Foodie',
 ]
 
 export function categoryToSlug(cat) {
