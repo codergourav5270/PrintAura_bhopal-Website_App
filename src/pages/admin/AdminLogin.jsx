@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, Navigate, useLocation } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext.jsx'
 import { ADMIN_EMAIL, supabase } from '../../lib/supabase'
+import { fetchSiteSettings } from '../../lib/siteSettings'
 
 export default function AdminLogin() {
   const { session, loading, user } = useAuth()
@@ -11,6 +12,10 @@ export default function AdminLogin() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [busy, setBusy] = useState(false)
+  const [siteName, setSiteName] = useState('PrintAura_bhopal')
+useEffect(() => {
+  fetchSiteSettings().then((s) => s?.website_name && setSiteName(s.website_name))
+}, [])
 
   if (!loading && session && user?.email?.toLowerCase() === ADMIN_EMAIL.toLowerCase()) {
     return <Navigate to={from} replace />
@@ -40,14 +45,14 @@ export default function AdminLogin() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-bg px-4">
+    <div className="flex min-h-screen items-center justify-center bg-[#111] px-4">
       <div className="w-full max-w-md rounded-2xl border border-border bg-[#111] p-8 shadow-2xl">
         <div className="flex flex-col items-center text-center">
           <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent text-xl font-black text-black">
             P
           </span>
           <h1 className="mt-4 text-xl font-bold text-white">Admin Panel</h1>
-          <p className="mt-1 text-sm text-[#aaaaaa]">PrintAura_bhopal operations</p>
+          <p className="mt-1 text-sm text-[#aaaaaa]">{siteName} operations</p>
         </div>
         <form onSubmit={onSubmit} className="mt-8 space-y-4">
           <div>
@@ -56,7 +61,7 @@ export default function AdminLogin() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-white outline-none focus:border-accent"
+              className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm text-white outline-none focus:border-accent"
               autoComplete="username"
             />
           </div>
@@ -66,7 +71,7 @@ export default function AdminLogin() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-white outline-none focus:border-accent"
+              className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm text-white outline-none focus:border-accent"
               autoComplete="current-password"
             />
           </div>

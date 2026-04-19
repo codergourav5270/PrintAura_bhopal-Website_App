@@ -57,13 +57,13 @@ export default function AdminCustomers() {
           value={q}
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search name, email, phone"
-          className="w-full rounded-xl border border-border bg-card py-3 pl-10 pr-4 text-sm outline-none focus:border-accent"
+          className="w-full rounded-xl border border-border bg-[#111] py-3 pl-10 pr-4 text-sm outline-none focus:border-accent"
         />
       </div>
 
-      <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-card">
+      <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-[#111]">
         <table className="w-full min-w-[800px] text-left text-sm">
-          <thead className="border-b border-border bg-bg/80 text-[#aaaaaa]">
+          <thead className="border-b border-border bg-[#111]/80 text-[#aaaaaa]">
             <tr>
               <th className="p-3 w-8" />
               <th className="p-3 font-medium">Name</th>
@@ -113,7 +113,7 @@ export default function AdminCustomers() {
                       </td>
                     </tr>
                     {open && (
-                      <tr className="bg-bg/50">
+                      <tr className="bg-[#111]/50">
                         <td colSpan={7} className="p-4">
                           <p className="mb-2 text-xs font-semibold uppercase text-[#666]">
                             Orders for {c.email}

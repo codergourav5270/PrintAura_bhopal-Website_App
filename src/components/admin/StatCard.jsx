@@ -4,7 +4,7 @@ export function StatCard({ label, value, tone = 'neutral' }) {
     blue: 'border-blue-500/30 bg-blue-950/40 text-blue-300',
     green: 'border-emerald-500/30 bg-emerald-950/40 text-emerald-300',
     purple: 'border-purple-500/30 bg-purple-950/40 text-purple-300',
-    neutral: 'border-border bg-card text-white',
+    neutral: 'border-border bg-[#111] text-white',
   }
   return (
     <div

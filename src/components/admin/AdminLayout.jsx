@@ -23,8 +23,7 @@ const nav = [
   { to: '/admin/orders', label: 'Orders', icon: Package, emoji: '📦' },
   { to: '/admin/customers', label: 'Customers', icon: Users, emoji: '👥' },
   { to: '/admin/payments', label: 'Payments', icon: Wallet, emoji: '💳' },
-  { to: '/admin/coupons', label: 'Coupons', icon: Ticket, emoji: '🎟️' },
-  { to: '/admin/settings', label: 'Settings', icon: Settings, emoji: '⚙️' },
+  { to: '/admin/coupons', label: 'Coupons', icon: Ticket, emoji: '🎟️' }
 ]
 
 export function AdminLayout({ title, children }) {
@@ -66,9 +65,9 @@ useEffect(() => {
   )
 
   return (
-    <div className="min-h-screen bg-bg text-white">
+    <div className="min-h-screen bg-[#0a0a0a] text-white">
       {/* Desktop sidebar */}
-      <aside className="fixed left-0 top-0 z-40 hidden h-full w-56 flex-col border-r border-border bg-adminSidebar lg:flex">
+      <aside className="fixed left-0 top-0 z-40 hidden h-full w-56 flex-col border-r border-border bg-[#111] lg:flex">
         <div className="flex items-center gap-2 border-b border-border p-4">
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-sm font-black text-black">
             p
@@ -97,7 +96,7 @@ useEffect(() => {
       </aside>
 
       {/* Mobile header */}
-      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-border bg-adminSidebar px-3 py-3 lg:hidden">
+      <header className="sticky top-0 z-30 flex items-center justify-between border-b border-border bg-[#111] px-3 py-3 lg:hidden">
         <button
           type="button"
           onClick={() => setSidebarOpen(true)}
@@ -120,7 +119,7 @@ useEffect(() => {
             aria-label="Close"
             onClick={() => setSidebarOpen(false)}
           />
-          <div className="absolute left-0 top-0 flex h-full w-72 flex-col bg-adminSidebar shadow-2xl">
+          <div className="absolute left-0 top-0 flex h-full w-72 flex-col bg-[#111] shadow-2xl">
             <div className="flex items-center justify-between border-b border-border p-4">
               <span className="font-semibold">Menu</span>
               <button type="button" onClick={() => setSidebarOpen(false)}>
@@ -145,7 +144,7 @@ useEffect(() => {
       )}
 
       <div className="lg:pl-56">
-        <div className="sticky top-0 z-20 hidden items-center justify-between border-b border-border bg-bg/95 px-6 py-4 backdrop-blur lg:flex">
+        <div className="sticky top-0 z-20 hidden items-center justify-between border-b border-border bg-black px-6 py-4 backdrop-blur lg:flex">
           <h1 className="text-lg font-semibold text-white">{title}</h1>
           <div className="flex items-center gap-4">
             <button
@@ -169,7 +168,7 @@ useEffect(() => {
       </div>
 
       {/* Bottom nav mobile */}
-      <nav className="fixed bottom-0 left-0 right-0 z-30 flex items-center justify-around border-t border-border bg-adminSidebar px-2 py-2 lg:hidden">
+      <nav className="fixed bottom-0 left-0 right-0 z-30 flex items-center justify-around border-t border-border bg-[#111] px-2 py-2 lg:hidden">
         {nav.slice(0, 4).map(({ to, icon: Icon }) => (
           <NavLink
             key={to}

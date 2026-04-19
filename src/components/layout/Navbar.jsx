@@ -17,7 +17,7 @@ export function Navbar() {
   }, [])
 
   const onSearch = (e) => {
-    e.preventDefault()
+    if (e) e.preventDefault()
     const term = q.trim()
     if (term) nav(`/shop?q=${encodeURIComponent(term)}`)
     else nav('/shop')
@@ -123,17 +123,20 @@ export function Navbar() {
         </div>
 
         <form
-          onSubmit={onSearch}
-          className="mx-auto flex max-w-7xl items-center gap-2 border-t border-border px-4 py-2 md:hidden"
-        >
-          <Search className="h-4 w-4 shrink-0 text-[#7b1c1c]" />
-          <input
-            value={q}
-            onChange={(e) => setQ(e.target.value)}
-            placeholder="Search..."
-            className="min-h-[44px] w-full bg-transparent text-sm text-black outline-none placeholder:text-black"
-          />
-        </form>
+  onSubmit={(e) => {
+    e.preventDefault()
+    onSearch(e)
+  }}
+  className="mx-auto flex max-w-7xl items-center gap-2 border-t border-border px-4 py-2 md:hidden"
+>
+  <Search className="h-4 w-4 shrink-0 text-[#7b1c1c]" />
+  <input
+    value={q}
+    onChange={(e) => setQ(e.target.value)}
+    placeholder="Search..."
+    className="min-h-[44px] w-full bg-transparent text-sm text-black outline-none placeholder:text-black"
+  />
+</form>
       </header>
       <MobileMenu open={open} onClose={() => setOpen(false)} />
     </>

@@ -64,9 +64,9 @@ export default function AdminCoupons() {
         Create coupon
       </button>
 
-      <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-card">
+      <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-[#111]">
         <table className="w-full min-w-[600px] text-left text-sm">
-          <thead className="border-b border-border bg-bg/80 text-[#aaaaaa]">
+          <thead className="border-b border-border bg-[#111]/80 text-[#aaaaaa]">
             <tr>
               <th className="p-3 font-medium">Code</th>
               <th className="p-3 font-medium">Discount %</th>
@@ -135,7 +135,7 @@ export default function AdminCoupons() {
             <input
               value={code}
               onChange={(e) => setCode(e.target.value.toUpperCase())}
-              className="mt-1 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm uppercase"
+              className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm uppercase"
             />
           </div>
           <div>
@@ -144,7 +144,7 @@ export default function AdminCoupons() {
               type="number"
               value={pct}
               onChange={(e) => setPct(e.target.value)}
-              className="mt-1 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm"
+              className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm"
             />
           </div>
           <button

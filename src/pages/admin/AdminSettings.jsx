@@ -262,7 +262,7 @@ export default function AdminSettings() {
 
   return (
     <AdminLayout title="Settings">
-      <div className="max-w-lg space-y-4 rounded-2xl border border-border bg-card p-6">
+      <div className="max-w-lg space-y-4 rounded-2xl border border-border bg-[#111] p-6">
         <p className="text-sm text-[#aaaaaa]">
           Store settings are saved in Supabase (settings table). Use for display
           copy or internal notes — Supabase project URLs stay in env vars.
@@ -275,7 +275,7 @@ export default function AdminSettings() {
           <input
             value={storeName}
             onChange={(e) => setStoreName(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm"
           />
         </div>
         <div>
@@ -283,7 +283,7 @@ export default function AdminSettings() {
           <input
             value={supportEmail}
             onChange={(e) => setSupportEmail(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm"
           />
         </div>
         <div>
@@ -291,7 +291,7 @@ export default function AdminSettings() {
           <input
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm"
           />
         </div>
         <div>
@@ -319,7 +319,7 @@ export default function AdminSettings() {
           <input
             value={heroHeight}
             onChange={(e) => setHeroHeight(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm"
           />
         </div>
         <div>
@@ -327,7 +327,7 @@ export default function AdminSettings() {
           <input
             value={heroText}
             onChange={(e) => setHeroText(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm"
           />
         </div>
         <div>
@@ -335,7 +335,7 @@ export default function AdminSettings() {
           <select
             value={catName}
             onChange={(e) => setCatName(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm"
           >
             {CATEGORY_OPTIONS.map((c) => (
               <option key={c} value={c}>
@@ -396,7 +396,7 @@ export default function AdminSettings() {
           <input
             value={upiId}
             onChange={(e) => setUpiId(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm"
           />
         </div>
         <div>
@@ -414,7 +414,7 @@ export default function AdminSettings() {
           <input
             value={adminEmailRow}
             onChange={(e) => setAdminEmailRow(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm"
           />
         </div>
         <button

@@ -163,7 +163,7 @@ export function PosterForm({
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:border-accent"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm outline-none focus:border-accent"
           />
         </div>
         <div>
@@ -171,7 +171,7 @@ export function PosterForm({
           <select
             value={category}
             onChange={(e) => setCategory(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:border-accent"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm outline-none focus:border-accent"
           >
             {CATEGORIES.map((c) => (
               <option key={c} value={c}>
@@ -185,7 +185,7 @@ export function PosterForm({
           <input
             value={tagsRaw}
             onChange={(e) => setTagsRaw(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:border-accent"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm outline-none focus:border-accent"
           />
         </div>
         <div className="sm:col-span-2">
@@ -194,7 +194,7 @@ export function PosterForm({
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             rows={4}
-            className="mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:border-accent"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm outline-none focus:border-accent"
           />
         </div>
         <div>
@@ -203,7 +203,7 @@ export function PosterForm({
             type="number"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:border-accent"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm outline-none focus:border-accent"
           />
         </div>
         <div>
@@ -212,7 +212,7 @@ export function PosterForm({
             type="number"
             value={originalPrice}
             onChange={(e) => setOriginalPrice(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:border-accent"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm outline-none focus:border-accent"
           />
         </div>
         <div>
@@ -220,7 +220,7 @@ export function PosterForm({
           <select
             value={badge}
             onChange={(e) => setBadge(e.target.value)}
-            className="mt-1 w-full rounded-xl border border-border bg-card px-4 py-3 text-sm outline-none focus:border-accent"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-4 py-3 text-sm outline-none focus:border-accent"
           >
             <option value="">None</option>
             <option value="NEW">NEW</option>
@@ -241,7 +241,7 @@ export function PosterForm({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-border bg-card p-4">
+      <div className="rounded-2xl border border-border bg-[#111] p-4">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h3 className="text-sm font-semibold text-white">Size pricing</h3>
           <button
@@ -258,14 +258,14 @@ export function PosterForm({
               <input
                 value={row.label}
                 onChange={(e) => updateSize(idx, 'label', e.target.value)}
-                className="min-w-[6rem] flex-1 rounded-xl border border-border bg-bg px-3 py-2 text-sm"
+                className="min-w-[6rem] flex-1 rounded-xl border border-border bg-[#111] px-3 py-2 text-sm"
                 placeholder="Label"
               />
               <input
                 type="number"
                 value={row.price}
                 onChange={(e) => updateSize(idx, 'price', e.target.value)}
-                className="w-28 rounded-xl border border-border bg-bg px-3 py-2 text-sm"
+                className="w-28 rounded-xl border border-border bg-[#111] px-3 py-2 text-sm"
                 placeholder="₹"
               />
               <button
@@ -280,7 +280,7 @@ export function PosterForm({
         </div>
       </div>
 
-      <div className="rounded-2xl border border-border bg-card p-4">
+      <div className="rounded-2xl border border-border bg-[#111] p-4">
         <h3 className="text-sm font-semibold text-white">Image</h3>
         {canPreview && (
           <img

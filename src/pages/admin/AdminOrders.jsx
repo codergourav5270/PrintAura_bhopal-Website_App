@@ -104,14 +104,14 @@ export default function AdminOrders() {
 
   return (
     <AdminLayout title="Orders">
-      <div className="flex flex-wrap gap-3 rounded-2xl border border-border bg-card p-4">
+      <div className="flex flex-wrap gap-3 rounded-2xl border border-border bg-[#111] p-4">
         <div>
           <label className="text-[10px] uppercase text-[#666]">From</label>
           <input
             type="date"
             value={dateFrom}
             onChange={(e) => setDateFrom(e.target.value)}
-            className="mt-1 block rounded-xl border border-border bg-bg px-3 py-2 text-sm"
+            className="mt-1 block rounded-xl border border-border bg-[#111] px-3 py-2 text-sm"
           />
         </div>
         <div>
@@ -120,7 +120,7 @@ export default function AdminOrders() {
             type="date"
             value={dateTo}
             onChange={(e) => setDateTo(e.target.value)}
-            className="mt-1 block rounded-xl border border-border bg-bg px-3 py-2 text-sm"
+            className="mt-1 block rounded-xl border border-border bg-[#111] px-3 py-2 text-sm"
           />
         </div>
         <div>
@@ -128,7 +128,7 @@ export default function AdminOrders() {
           <select
             value={orderStatus}
             onChange={(e) => setOrderStatus(e.target.value)}
-            className="mt-1 block rounded-xl border border-border bg-bg px-3 py-2 text-sm"
+            className="mt-1 block rounded-xl border border-border bg-[#111] px-3 py-2 text-sm"
           >
             <option value="">All</option>
             <option value="placed">Placed</option>
@@ -142,7 +142,7 @@ export default function AdminOrders() {
           <select
             value={payFilter}
             onChange={(e) => setPayFilter(e.target.value)}
-            className="mt-1 block rounded-xl border border-border bg-bg px-3 py-2 text-sm"
+            className="mt-1 block rounded-xl border border-border bg-[#111] px-3 py-2 text-sm"
           >
             <option value="">All</option>
             <option value="paid">Paid</option>
@@ -157,7 +157,7 @@ export default function AdminOrders() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Order # or customer"
-            className="mt-1 w-full rounded-xl border border-border bg-bg px-3 py-2 text-sm"
+            className="mt-1 w-full rounded-xl border border-border bg-[#111] px-3 py-2 text-sm"
           />
         </div>
         <div className="flex items-end">
@@ -172,9 +172,9 @@ export default function AdminOrders() {
         </div>
       </div>
 
-      <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-card">
+      <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-[#111]">
         <table className="w-full min-w-[960px] text-left text-sm">
-          <thead className="border-b border-border bg-bg/80 text-[#aaaaaa]">
+          <thead className="border-b border-border bg-[#111]/80 text-[#aaaaaa]">
             <tr>
               <th className="p-3 font-medium">Order #</th>
               <th className="p-3 font-medium">Customer</th>
@@ -214,7 +214,7 @@ export default function AdminOrders() {
                     <select
                       value={o.order_status || 'placed'}
                       onChange={(e) => updateStatus(o.id, e.target.value)}
-                      className="rounded-lg border border-border bg-bg px-2 py-2 text-xs text-white"
+                      className="rounded-lg border border-border bg-[#111] px-2 py-2 text-xs text-white"
                     >
                       {STATUSES.map((s) => (
                         <option key={s} value={s}>

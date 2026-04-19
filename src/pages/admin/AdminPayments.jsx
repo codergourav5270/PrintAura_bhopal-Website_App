@@ -8,7 +8,7 @@ function statusColor(o) {
   if (o.payment_status === 'paid') return 'text-emerald-300 bg-emerald-950/30'
   if (o.payment_status === 'pending') return 'text-yellow-200 bg-yellow-950/30'
   if (o.payment_status === 'failed') return 'text-red-300 bg-red-950/30'
-  return 'text-[#aaaaaa] bg-bg'
+  return 'text-[#aaaaaa] bg-[#111]'
 }
 
 function startOfDay(d) {
@@ -108,14 +108,14 @@ export default function AdminPayments() {
         />
       </div>
 
-      <div className="mt-6 flex flex-wrap gap-3 rounded-2xl border border-border bg-card p-4">
+      <div className="mt-6 flex flex-wrap gap-3 rounded-2xl border border-border bg-[#111] p-4">
         <div>
           <label className="text-[10px] uppercase text-[#666]">From date</label>
           <input
             type="date"
             value={dateFrom}
             onChange={(e) => setDateFrom(e.target.value)}
-            className="mt-1 block rounded-xl border border-border bg-bg px-3 py-2 text-sm"
+            className="mt-1 block rounded-xl border border-border bg-[#111] px-3 py-2 text-sm"
           />
         </div>
         <div>
@@ -123,7 +123,7 @@ export default function AdminPayments() {
           <select
             value={statusF}
             onChange={(e) => setStatusF(e.target.value)}
-            className="mt-1 block rounded-xl border border-border bg-bg px-3 py-2 text-sm"
+            className="mt-1 block rounded-xl border border-border bg-[#111] px-3 py-2 text-sm"
           >
             <option value="">All</option>
             <option value="paid">Paid</option>
@@ -136,7 +136,7 @@ export default function AdminPayments() {
           <select
             value={methodF}
             onChange={(e) => setMethodF(e.target.value)}
-            className="mt-1 block rounded-xl border border-border bg-bg px-3 py-2 text-sm"
+            className="mt-1 block rounded-xl border border-border bg-[#111] px-3 py-2 text-sm"
           >
             <option value="">All</option>
             <option value="online">Online</option>
@@ -145,9 +145,9 @@ export default function AdminPayments() {
         </div>
       </div>
 
-      <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-card">
+      <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-[#111]">
         <table className="w-full min-w-[900px] text-left text-sm">
-          <thead className="border-b border-border bg-bg/80 text-[#aaaaaa]">
+          <thead className="border-b border-border bg-[#111]/80 text-[#aaaaaa]">
             <tr>
               <th className="p-3 font-medium">Order #</th>
               <th className="p-3 font-medium">Customer</th>

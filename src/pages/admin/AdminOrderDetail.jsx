@@ -101,7 +101,7 @@ export default function AdminOrderDetail() {
         <select
           value={order.order_status}
           onChange={(e) => updateStatus(e.target.value)}
-          className="rounded-xl border border-border bg-card px-4 py-2 text-sm"
+          className="rounded-xl border border-border bg-[#111] px-4 py-2 text-sm"
         >
           {STEPS.map((s) => (
             <option key={s} value={s}>
@@ -124,7 +124,7 @@ export default function AdminOrderDetail() {
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
-        <div className="rounded-2xl border border-border bg-card p-6 lg:col-span-2">
+        <div className="rounded-2xl border border-border bg-[#111] p-6 lg:col-span-2">
           <h2 className="text-sm font-semibold text-white">Customer</h2>
           <p className="mt-2 text-[#aaaaaa]">{order.customer_name}</p>
           <p className="text-sm text-[#666]">{order.customer_email}</p>
@@ -140,7 +140,7 @@ export default function AdminOrderDetail() {
             {(order.items || []).map((it, i) => (
               <li
                 key={i}
-                className="flex gap-3 rounded-xl border border-border bg-bg/60 p-3"
+                className="flex gap-3 rounded-xl border border-border bg-[#111]/60 p-3"
               >
                 <img
                   src={
@@ -162,7 +162,7 @@ export default function AdminOrderDetail() {
           </ul>
         </div>
         <div className="space-y-6">
-          <div className="rounded-2xl border border-border bg-card p-6">
+          <div className="rounded-2xl border border-border bg-[#111] p-6">
             <h2 className="text-sm font-semibold text-white">Totals</h2>
             <dl className="mt-3 space-y-2 text-sm">
               <div className="flex justify-between text-[#aaaaaa]">
@@ -183,7 +183,7 @@ export default function AdminOrderDetail() {
               </div>
             </dl>
           </div>
-          <div className="rounded-2xl border border-border bg-card p-6">
+          <div className="rounded-2xl border border-border bg-[#111] p-6">
             <h2 className="text-sm font-semibold text-white">Payment</h2>
             <p className="mt-2 text-sm text-[#aaaaaa]">
               Method: {order.payment_method}
@@ -205,7 +205,7 @@ export default function AdminOrderDetail() {
               <p className="mt-2 text-xs text-accent">Coupon: {order.coupon_used}</p>
             )}
           </div>
-          <div className="rounded-2xl border border-border bg-card p-6">
+          <div className="rounded-2xl border border-border bg-[#111] p-6">
             <h2 className="text-sm font-semibold text-white">Timeline</h2>
             <ol className="mt-4 space-y-3">
               {STEPS.map((s, i) => (

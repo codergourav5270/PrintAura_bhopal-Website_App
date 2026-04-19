@@ -43,8 +43,8 @@ export default function Shop() {
   const [search, setSearch] = useState(initialQ)
 
   useEffect(() => {
-    setSearch(searchParams.get('q') || '')
-  }, [searchParams])
+    setSearch(initialQ)
+  }, [initialQ])
 
   useEffect(() => {
     let cancelled = false

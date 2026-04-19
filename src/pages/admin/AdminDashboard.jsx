@@ -141,7 +141,7 @@ export default function AdminDashboard() {
           </div>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-2">
-            <div className="rounded-2xl border border-border bg-card p-4">
+            <div className="rounded-2xl border border-border bg-[#111] p-4">
               <h2 className="text-sm font-semibold text-white">
                 Orders this week
               </h2>
@@ -162,7 +162,7 @@ export default function AdminDashboard() {
                 </ResponsiveContainer>
               </div>
             </div>
-            <div className="rounded-2xl border border-border bg-card p-4">
+            <div className="rounded-2xl border border-border bg-[#111] p-4">
               <h2 className="text-sm font-semibold text-white">
                 Revenue this month (paid)
               </h2>
@@ -192,7 +192,7 @@ export default function AdminDashboard() {
           </div>
 
           <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            <div className="rounded-2xl border border-border bg-card p-4 lg:col-span-2">
+            <div className="rounded-2xl border border-border bg-[#111] p-4 lg:col-span-2">
               <div className="flex items-center justify-between">
                 <h2 className="text-sm font-semibold text-white">Recent orders</h2>
                 <Link
@@ -237,7 +237,7 @@ export default function AdminDashboard() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-border bg-card p-4">
+            <div className="rounded-2xl border border-border bg-[#111] p-4">
               <h2 className="text-sm font-semibold text-amber-400">
                 Low stock / out of stock
               </h2>

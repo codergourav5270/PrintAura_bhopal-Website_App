@@ -14,6 +14,7 @@ const categoryImages = {
   'Car':          ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416929/car-1_sabw7n.jpg',  'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416929/car-2_w7x5kp.jpg'],
   'Bike':         ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416929/bike-1_v45hic.jpg', 'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416929/bike-2_kq5gcr.jpg'],
   'God':          ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416928/god-1_zi342r.jpg',  'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1775416929/god-2_pi9ug9.jpg'],
+  'Custom':       ['https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1776622990/cus_1_rn74ow.jpg', 'https://res.cloudinary.com/dqlzmrztl/image/upload/q_auto/f_auto/v1776622995/cus_2_qyin10.jpg'],
 }
 
 function CategoryCard({ c }) {
@@ -77,7 +78,6 @@ export function CategoryGrid() {
         </div>
       </div>
 
-      {/* 3 columns on mobile, 4 columns on desktop */}
       <div className="grid grid-cols-3 gap-2 md:grid-cols-4 md:gap-4">
         {CATEGORIES.map((c) => (
           <CategoryCard key={c} c={c} />
